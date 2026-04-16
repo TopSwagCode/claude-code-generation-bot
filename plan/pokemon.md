@@ -1,1 +1,0 @@
-I want a small prototype for getting overview of all pokemon using the https://pokeapi.co/ Simple and loveable.
