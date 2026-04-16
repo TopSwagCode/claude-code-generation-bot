@@ -1,0 +1,59 @@
+name: Generate site from plan
+
+on:
+  push:
+    paths:
+      - 'plan/**.md'
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Find plan file
+        id: find
+        run: |
+          plan_file=$(find plan -maxdepth 2 -name "*.md" -type f | head -n 1)
+          if [ -z "$plan_file" ]; then
+            echo "No plan file found, skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Found plan: $plan_file"
+            echo "plan_file=$plan_file" >> "$GITHUB_OUTPUT"
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run Claude Code
+        if: steps.find.outputs.skip == 'false'
+        uses: anthropics/claude-code-base-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_tools: "Read,Write,Edit,Glob,Grep,Bash(mkdir:*),Bash(ls:*)"
+          prompt: |
+            Read the plan at `${{ steps.find.outputs.plan_file }}`.
+            Build a simple static website (plain HTML, CSS, and JavaScript only — no frameworks, no build step)
+            that implements what the plan describes, and place every generated file in the `app/` folder.
+            The site should be a collection of static pages linked together, with an `app/index.html` entry point.
+            Do not modify anything outside of `app/`. Do not delete the plan file — the workflow will handle that.
+
+      - name: Delete implemented plan
+        if: steps.find.outputs.skip == 'false'
+        run: rm -f "${{ steps.find.outputs.plan_file }}"
+
+      - name: Commit and push
+        if: steps.find.outputs.skip == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "Generate site from $(basename '${{ steps.find.outputs.plan_file }}')"
+            git push
+          fi
