@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Sensor Dashboard - Energinet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo-link">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Energinet_logo.svg" alt="Energinet" class="logo">
+        </a>
+        <h1>MOBILE SENSOR DASHBOARD</h1>
+    </header>
+
+    <main class="main">
+        <section class="sensor-grid">
+            <div class="sensor-card orientation-card">
+                <h2>DEVICE TILTING</h2>
+                <div class="orientation-display">
+                    <div class="device-visual" id="deviceVisual"></div>
+                    <div class="orientation-text">
+                        <div class="tilt-direction" id="tiltDirection">LEVEL</div>
+                        <div class="tilt-values">
+                            <span id="tiltX">X: 0°</span>
+                            <span id="tiltY">Y: 0°</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sensor-card shake-card">
+                <h2>SHAKE DETECTION</h2>
+                <div class="shake-display">
+                    <div class="shake-indicator" id="shakeIndicator">
+                        <div class="shake-icon">📱</div>
+                        <div class="shake-status" id="shakeStatus">STEADY</div>
+                        <div class="shake-intensity" id="shakeIntensity">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sensor-card motion-card">
+                <h2>ACCELERATION</h2>
+                <div class="motion-display">
+                    <div class="acceleration-bars">
+                        <div class="accel-bar">
+                            <label>X</label>
+                            <div class="bar-container">
+                                <div class="bar" id="accelX"></div>
+                            </div>
+                            <span id="accelXValue">0</span>
+                        </div>
+                        <div class="accel-bar">
+                            <label>Y</label>
+                            <div class="bar-container">
+                                <div class="bar" id="accelY"></div>
+                            </div>
+                            <span id="accelYValue">0</span>
+                        </div>
+                        <div class="accel-bar">
+                            <label>Z</label>
+                            <div class="bar-container">
+                                <div class="bar" id="accelZ"></div>
+                            </div>
+                            <span id="accelZValue">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sensor-card compass-card">
+                <h2>COMPASS</h2>
+                <div class="compass-display">
+                    <div class="compass-needle" id="compassNeedle">
+                        <div class="needle"></div>
+                        <div class="compass-directions">
+                            <span class="north">N</span>
+                            <span class="east">E</span>
+                            <span class="south">S</span>
+                            <span class="west">W</span>
+                        </div>
+                    </div>
+                    <div class="heading-value" id="headingValue">0°</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="permission-notice" id="permissionNotice">
+            <p>Tryk på knappen for at aktivere sensorer</p>
+            <button id="enableSensors" class="enable-button">AKTIVER SENSORER</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

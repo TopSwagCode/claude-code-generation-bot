@@ -1,0 +1,394 @@
+:root {
+    --energinet-green: #00A58D;
+    --energinet-dark-green: #008A8B;
+    --energinet-blue-green: #09505D;
+    --energinet-dark-blue: #293A4C;
+    --energinet-yellow: #FFD424;
+    --energinet-red: #ce3e33;
+    --surface: #ffffff;
+    --background: #f5faf9;
+    --border: #d7e2e1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--background);
+    color: var(--energinet-dark-blue);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.header {
+    background-color: var(--surface);
+    border-bottom: 2px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-link {
+    display: block;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+.header h1 {
+    font-weight: 300;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--energinet-blue-green);
+}
+
+.main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sensor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.sensor-card {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sensor-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 165, 141, 0.1);
+}
+
+.sensor-card h2 {
+    font-weight: 300;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--energinet-blue-green);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Orientation Card */
+.orientation-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.device-visual {
+    width: 80px;
+    height: 120px;
+    background: var(--energinet-green);
+    border-radius: 8px;
+    position: relative;
+    transform-origin: center center;
+    transition: transform 0.1s ease;
+}
+
+.device-visual::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 4px;
+    background: var(--surface);
+    border-radius: 2px;
+}
+
+.orientation-text {
+    text-align: center;
+}
+
+.tilt-direction {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--energinet-green);
+    margin-bottom: 0.5rem;
+    min-height: 2.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tilt-values {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--energinet-dark-blue);
+}
+
+/* Shake Card */
+.shake-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.shake-indicator {
+    text-align: center;
+}
+
+.shake-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    transition: transform 0.1s ease;
+}
+
+.shake-status {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--energinet-green);
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.shake-intensity {
+    font-size: 1rem;
+    color: var(--energinet-dark-blue);
+}
+
+.shake-indicator.shaking .shake-icon {
+    animation: shake 0.2s infinite;
+}
+
+.shake-indicator.shaking .shake-status {
+    color: var(--energinet-red);
+    animation: pulse 0.5s infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px) rotate(-1deg); }
+    75% { transform: translateX(2px) rotate(1deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Motion Card */
+.motion-display {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.acceleration-bars {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.accel-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.accel-bar label {
+    font-weight: 500;
+    color: var(--energinet-blue-green);
+    width: 20px;
+}
+
+.bar-container {
+    flex: 1;
+    height: 20px;
+    background: var(--border);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.bar {
+    height: 100%;
+    background: var(--energinet-green);
+    border-radius: 10px;
+    transition: width 0.1s ease;
+    min-width: 2px;
+}
+
+.accel-bar span {
+    font-size: 0.9rem;
+    color: var(--energinet-dark-blue);
+    width: 40px;
+    text-align: right;
+}
+
+/* Compass Card */
+.compass-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.compass-needle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border: 3px solid var(--energinet-green);
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.needle {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 3px;
+    height: 50px;
+    background: var(--energinet-red);
+    transform-origin: bottom center;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+}
+
+.needle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -3px;
+    width: 9px;
+    height: 9px;
+    background: var(--energinet-red);
+    border-radius: 50%;
+}
+
+.compass-directions {
+    position: absolute;
+    inset: 0;
+}
+
+.compass-directions span {
+    position: absolute;
+    font-weight: 500;
+    color: var(--energinet-blue-green);
+}
+
+.north { top: 5px; left: 50%; transform: translateX(-50%); }
+.east { right: 8px; top: 50%; transform: translateY(-50%); }
+.south { bottom: 5px; left: 50%; transform: translateX(-50%); }
+.west { left: 8px; top: 50%; transform: translateY(-50%); }
+
+.heading-value {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--energinet-green);
+}
+
+/* Permission Notice */
+.permission-notice {
+    background: var(--surface);
+    border: 2px solid var(--energinet-yellow);
+    border-radius: 4px;
+    padding: 2rem;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.permission-notice.hidden {
+    display: none;
+}
+
+.enable-button {
+    background: var(--energinet-green);
+    color: var(--surface);
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.enable-button:hover {
+    background: var(--energinet-dark-green);
+}
+
+.enable-button:active {
+    transform: translateY(1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .header h1 {
+        font-size: 1.2rem;
+    }
+
+    .main {
+        padding: 1rem;
+    }
+
+    .sensor-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .sensor-card {
+        min-height: 200px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .shake-indicator.shaking .shake-icon {
+        animation: none;
+    }
+    
+    .shake-indicator.shaking .shake-status {
+        animation: none;
+    }
+}
