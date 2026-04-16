@@ -1,0 +1,1 @@
+I would like a simple and nice website that can show my mobile sensors like how I am holding my phone and if it's shaken and other cool things. It should be clear to read, eg, when shaking that the text is still readable YOUR SHAKING YOUR PHONE?!?!?!?! Your tilting left / right up down etc. Have a fun spin on it.
