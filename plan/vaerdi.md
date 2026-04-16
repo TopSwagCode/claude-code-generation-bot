@@ -1,3 +1,0 @@
-Jeg er Product Owner og har behov for at dokumentere og analysere mine værdistrømme og få bygget en automatiseret løsning til at udføre mine repetitive opgaver og samle de opgaver der kommer til teamet, vurdere dem ens og samle dem i en backlog hvor de er prioriteret efter organisatorisk og strategisk værdiskabelse holdt op imod omfanget af opgaven og hvor mange blockere er der for at den kan lykkes.
- 
-Er det noget din afdeling kan hjælpe mig med, jeg er sikker på det ikke kun er mig men alle PO'er i mit område der mangler det her værktøj"

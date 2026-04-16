@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Værdi - Product Owner Værdistrømanalyse</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Værdi</h1>
+        <p>Product Owner værktøj til værdistrømanalyse og backlog prioritering</p>
+    </header>
+
+    <main>
+        <section class="analysis-section">
+            <h2>Værdistrøm Dokumentation</h2>
+            <div class="value-stream-form">
+                <div class="form-group">
+                    <label for="value-stream-name">Værdistrøm Navn</label>
+                    <input type="text" id="value-stream-name" placeholder="f.eks. Kundeservice proces">
+                </div>
+                <div class="form-group">
+                    <label for="value-stream-description">Beskrivelse</label>
+                    <textarea id="value-stream-description" placeholder="Beskriv værdistrømmen og dens formål..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="stakeholders">Interessenter</label>
+                    <input type="text" id="stakeholders" placeholder="Kundeteam, Support, Development">
+                </div>
+                <button class="btn-primary" id="save-value-stream">Gem Værdistrøm</button>
+            </div>
+        </section>
+
+        <section class="task-section">
+            <h2>Opgave Management</h2>
+            <div class="task-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="task-title">Opgave Titel</label>
+                        <input type="text" id="task-title" placeholder="Beskriv opgaven...">
+                    </div>
+                    <div class="form-group">
+                        <label for="task-effort">Omfang (1-10)</label>
+                        <select id="task-effort">
+                            <option value="1">1 - Meget lille</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5 - Medium</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10 - Meget stort</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="org-value">Organisatorisk Værdi (1-10)</label>
+                        <select id="org-value">
+                            <option value="1">1 - Meget lav</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5 - Medium</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10 - Meget høj</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="strategic-value">Strategisk Værdi (1-10)</label>
+                        <select id="strategic-value">
+                            <option value="1">1 - Meget lav</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5 - Medium</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10 - Meget høj</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="blockers">Blockere</label>
+                    <textarea id="blockers" placeholder="Liste blockere der kan forhindre succes..."></textarea>
+                </div>
+
+                <button class="btn-primary" id="add-task">Tilføj Opgave</button>
+            </div>
+        </section>
+
+        <section class="backlog-section">
+            <h2>Prioriteret Backlog</h2>
+            <div class="backlog-controls">
+                <button class="btn-secondary" id="sort-by-priority">Sorter efter Prioritet</button>
+                <button class="btn-secondary" id="sort-by-value">Sorter efter Værdi</button>
+                <button class="btn-secondary" id="export-backlog">Eksporter Backlog</button>
+            </div>
+            <div class="backlog-list" id="backlog-list">
+                <div class="empty-state">
+                    <p>Ingen opgaver endnu. Tilføj opgaver ovenfor for at se dem prioriteret her.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="analytics-section">
+            <h2>Værdi Analyse</h2>
+            <div class="analytics-grid">
+                <div class="metric-card">
+                    <h3>Total Opgaver</h3>
+                    <div class="metric-value" id="total-tasks">0</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Gennemsnitlig Værdi</h3>
+                    <div class="metric-value" id="avg-value">0</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Høj Prioritet</h3>
+                    <div class="metric-value" id="high-priority">0</div>
+                </div>
+                <div class="metric-card">
+                    <h3>Opgaver med Blockere</h3>
+                    <div class="metric-value" id="blocked-tasks">0</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
