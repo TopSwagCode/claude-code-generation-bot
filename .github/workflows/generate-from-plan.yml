@@ -23,8 +23,10 @@ jobs:
             echo "No plan file found, skipping."
             echo "skip=true" >> "$GITHUB_OUTPUT"
           else
-            echo "Found plan: $plan_file"
+            slug=$(basename "$plan_file" .md)
+            echo "Found plan: $plan_file (slug: $slug)"
             echo "plan_file=$plan_file" >> "$GITHUB_OUTPUT"
+            echo "slug=$slug" >> "$GITHUB_OUTPUT"
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
@@ -35,11 +37,49 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           allowed_tools: "Read,Write,Edit,Glob,Grep,Bash(mkdir:*),Bash(ls:*)"
           prompt: |
-            Read the plan at `${{ steps.find.outputs.plan_file }}`.
-            Build a simple static website (plain HTML, CSS, and JavaScript only — no frameworks, no build step)
-            that implements what the plan describes, and place every generated file in the `app/` folder.
-            The site should be a collection of static pages linked together, with an `app/index.html` entry point.
-            Do not modify anything outside of `app/`. Do not delete the plan file — the workflow will handle that.
+            You are a prototype builder. Read the plan at `${{ steps.find.outputs.plan_file }}`.
+
+            Prototype slug: `${{ steps.find.outputs.slug }}`
+
+            ## What to build
+            Create a new folder `app/${{ steps.find.outputs.slug }}/` containing a complete
+            self-contained static prototype that implements the plan. Use plain HTML, CSS,
+            and JavaScript only — no frameworks, no bundlers, no build step, no external
+            runtime dependencies beyond optional CDN fonts/icons. The prototype's entry
+            point must be `app/${{ steps.find.outputs.slug }}/index.html` and all of its
+            assets (CSS, JS, images) must live inside that folder.
+
+            ## Update the landing page
+            After building the prototype, update `app/index.html` (create it if missing) so
+            it serves as a landing page linking to every prototype folder under `app/`.
+            List `app/${{ steps.find.outputs.slug }}/index.html` alongside any existing
+            prototypes — do not remove links to prototypes that are already there. Use
+            `ls app/` to discover what already exists. Give each entry a readable title
+            (derived from the slug) and a short description if one is reasonable.
+
+            ## Styling — applies to BOTH the landing page and the prototype
+            Make it look awesome and feel smooth. Follow these rules:
+            - Modern, minimal aesthetic. Clean typography, generous whitespace, a
+              consistent spacing and type scale.
+            - Use semantic HTML5 (`<header>`, `<main>`, `<nav>`, `<section>`, etc.) and
+              accessible markup (labels, alt text, focus states, aria where needed).
+            - Responsive, mobile-first layout using flexbox/grid. No fixed pixel widths
+              for page containers.
+            - Cohesive color palette with WCAG AA contrast. Support a dark mode via
+              `prefers-color-scheme` when it fits.
+            - System font stack, or a single tasteful web font from Google Fonts.
+            - Subtle, performant transitions (transform/opacity only). Respect
+              `prefers-reduced-motion`.
+            - No inline styles, no inline event handlers. Keep CSS in a `styles.css`
+              and JS in a `script.js` (or similarly named files) inside the prototype folder.
+            - Keep the JS lean and idiomatic — `const`/`let`, event delegation where it
+              helps, no globals leaking onto `window`.
+
+            ## Constraints
+            - Do not modify anything outside of `app/`.
+            - Do not delete the plan file — the workflow handles that.
+            - Do not touch other prototype folders under `app/` beyond linking to them
+              from the landing page.
 
       - name: Delete implemented plan
         if: steps.find.outputs.skip == 'false'
