@@ -1,37 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon Overview</title>
+    <title>Pokémon — Energinet Prototyper</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Pokemon Overview</h1>
-        <p>Discover and explore all Pokemon using the PokeAPI</p>
+    <header class="site-header">
+        <div class="container">
+            <a href="../index.html" class="brand" aria-label="Energinet — tilbage til prototyper">
+                <img class="brand-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Energinet_logo.svg" alt="Energinet">
+            </a>
+            <nav class="site-nav">
+                <a href="../index.html" class="site-nav-link">← Alle prototyper</a>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section class="search-section">
-            <input type="text" id="search-input" placeholder="Search Pokemon..." aria-label="Search Pokemon">
+    <section class="page-hero">
+        <div class="container">
+            <p class="section-label">Prototype</p>
+            <h1>Pokémon</h1>
+            <p class="page-lead">Udforsk alle Pokémon via PokeAPI. Søg, filtrér og bladr gennem Pokédex.</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="search-section" aria-label="Søgning">
+            <label class="sr-only" for="search-input">Søg Pokémon</label>
+            <input type="text" id="search-input" placeholder="Søg efter navn…" autocomplete="off">
         </section>
 
         <section class="loading" id="loading" aria-live="polite">
-            <div class="spinner"></div>
-            <p>Loading Pokemon...</p>
+            <div class="spinner" aria-hidden="true"></div>
+            <p>Henter Pokémon…</p>
         </section>
 
-        <section class="pokemon-grid" id="pokemon-grid" role="grid" aria-label="Pokemon grid">
-        </section>
+        <section class="pokemon-grid" id="pokemon-grid" aria-label="Pokémon-liste"></section>
 
         <section class="load-more-section" id="load-more-section">
-            <button id="load-more-btn" class="load-more-btn">Load More Pokemon</button>
+            <button id="load-more-btn" class="btn-primary" type="button">Hent flere</button>
         </section>
     </main>
+
+    <footer>
+        <div class="container">
+            <span>© Energinet — Prototyper</span>
+            <span>Grøn energi for en bedre verden</span>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

@@ -37,49 +37,82 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           allowed_tools: "Read,Write,Edit,Glob,Grep,Bash(mkdir:*),Bash(ls:*)"
           prompt: |
-            You are a prototype builder. Read the plan at `${{ steps.find.outputs.plan_file }}`.
+            You are a prototype builder for Energinet. Read the plan at
+            `${{ steps.find.outputs.plan_file }}`.
 
             Prototype slug: `${{ steps.find.outputs.slug }}`
 
+            ## Required pre-reading — Energinet brand
+            Before writing any code, read `brand.md` at the repo root. It defines
+            Energinet's voice, visual identity, palette, typography, and formatting
+            rules. Every page you produce — the landing page AND the prototype —
+            MUST follow those guidelines.
+
+            Key rules distilled from `brand.md` (the file is authoritative — re-read
+            it if anything below conflicts):
+
+            **Logo** — Include the Energinet logo in the header of every page:
+            `https://upload.wikimedia.org/wikipedia/commons/1/1f/Energinet_logo.svg`
+            - Render via `<img>` with `alt="Energinet"`.
+            - Size it so it fits the header cleanly: `height: 36px` to `48px`,
+              `width: auto`. Never stretch, crop, or recolor it.
+            - Always horizontal. Never combine it with other color treatments.
+            - The logo links back to the landing page `../index.html` from
+              prototypes, and to `index.html` from the landing page itself.
+
+            **Colors** — use Energinet's palette via CSS custom properties:
+            - Primary 01 (grøn) `#00A58D` — primary actions, accents, links
+            - Primary 02 (mørk grøn) `#008A8B` — hover/active
+            - Primary 04 (mørk blå-grøn) `#09505D` — headings, contrast surfaces
+            - Sekundær 10 (mørk blå) `#293A4C` — body text
+            - Sekundær 05 (gul) `#FFD424` — sparse highlights only (single words)
+            - Sekundær 11 (rød) `#ce3e33` — ONLY for errors/negative states
+            - Surface `#ffffff`, background `#f5faf9`, border `#d7e2e1`
+            Hit WCAG AA contrast. Support `prefers-color-scheme: dark` tastefully
+            if it fits — keep the green accent identical in both modes.
+
+            **Typography** — Inter from Google Fonts as the DIN Next substitute.
+            Use weights 300/400/500. Headings in UPPERCASE with Light (300) or
+            Regular (400) weight and ~0.04em letter-spacing for the "let og
+            luftigt" feel the designguide calls for.
+
+            **Shapes & feel** — border-radius 2–4px (minimal). Generous whitespace.
+            Clean, professional, Nordic-minimalist. No drop-shadow excess.
+
+            **Language & voice** — Fagligt præcis, tilgængelig, trovaerdig. Mirror
+            the plan's language (Danish if the plan is Danish). Avoid marketing
+            puffery. Use correct Danish terms where applicable.
+
             ## What to build
-            Create a new folder `app/${{ steps.find.outputs.slug }}/` containing a complete
-            self-contained static prototype that implements the plan. Use plain HTML, CSS,
-            and JavaScript only — no frameworks, no bundlers, no build step, no external
-            runtime dependencies beyond optional CDN fonts/icons. The prototype's entry
-            point must be `app/${{ steps.find.outputs.slug }}/index.html` and all of its
-            assets (CSS, JS, images) must live inside that folder.
+            Create a new folder `app/${{ steps.find.outputs.slug }}/` containing a
+            complete, self-contained static prototype that implements the plan.
+            Plain HTML, CSS, and JavaScript only — no frameworks, no bundlers, no
+            build step. The prototype's entry point must be
+            `app/${{ steps.find.outputs.slug }}/index.html`, with assets in
+            `styles.css` and `script.js` alongside it. Put the logo in the
+            prototype header linking back to `../index.html`.
 
             ## Update the landing page
-            After building the prototype, update `app/index.html` (create it if missing) so
-            it serves as a landing page linking to every prototype folder under `app/`.
-            List `app/${{ steps.find.outputs.slug }}/index.html` alongside any existing
-            prototypes — do not remove links to prototypes that are already there. Use
-            `ls app/` to discover what already exists. Give each entry a readable title
-            (derived from the slug) and a short description if one is reasonable.
+            After building the prototype, update `app/index.html` (create it if
+            missing) so it serves as a branded landing page linking to every
+            prototype folder under `app/`. Run `ls app/` to discover what already
+            exists. Preserve links to existing prototypes and ADD a link to the
+            new `${{ steps.find.outputs.slug }}` prototype. Give each entry a
+            readable title derived from the slug and a short description.
 
-            ## Styling — applies to BOTH the landing page and the prototype
-            Make it look awesome and feel smooth. Follow these rules:
-            - Modern, minimal aesthetic. Clean typography, generous whitespace, a
-              consistent spacing and type scale.
-            - Use semantic HTML5 (`<header>`, `<main>`, `<nav>`, `<section>`, etc.) and
-              accessible markup (labels, alt text, focus states, aria where needed).
-            - Responsive, mobile-first layout using flexbox/grid. No fixed pixel widths
-              for page containers.
-            - Cohesive color palette with WCAG AA contrast. Support a dark mode via
-              `prefers-color-scheme` when it fits.
-            - System font stack, or a single tasteful web font from Google Fonts.
-            - Subtle, performant transitions (transform/opacity only). Respect
+            ## Technical constraints
+            - Semantic HTML5 (`<header>`, `<main>`, `<nav>`, `<section>`). Accessible
+              labels, alt text, focus states, `aria-*` where needed.
+            - Responsive, mobile-first (flexbox/grid, no fixed container widths).
+            - No inline styles, no inline event handlers. CSS in `styles.css`, JS
+              in `script.js`.
+            - Lean, idiomatic JS — `const`/`let`, no globals on `window`.
+            - Subtle, performant transitions (transform/opacity). Respect
               `prefers-reduced-motion`.
-            - No inline styles, no inline event handlers. Keep CSS in a `styles.css`
-              and JS in a `script.js` (or similarly named files) inside the prototype folder.
-            - Keep the JS lean and idiomatic — `const`/`let`, event delegation where it
-              helps, no globals leaking onto `window`.
-
-            ## Constraints
             - Do not modify anything outside of `app/`.
             - Do not delete the plan file — the workflow handles that.
-            - Do not touch other prototype folders under `app/` beyond linking to them
-              from the landing page.
+            - Do not touch other prototype folders beyond linking to them from the
+              landing page.
 
       - name: Delete implemented plan
         if: steps.find.outputs.skip == 'false'

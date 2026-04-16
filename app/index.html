@@ -3,204 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prototyper - Værktøjer til produktudvikling</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Prototyper — Energinet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-primary: #2563eb;
-            --color-primary-hover: #1d4ed8;
+            --en-green: #00A58D;
+            --en-dark-green: #008A8B;
+            --en-deep: #09505D;
+            --en-blue: #00587C;
+            --en-yellow: #FFD424;
+            --en-dark: #293A4C;
+            --en-red: #ce3e33;
+
             --color-surface: #ffffff;
-            --color-background: #f8fafc;
-            --color-text: #1e293b;
-            --color-text-muted: #64748b;
-            --color-border: #e2e8f0;
-            
-            --spacing-sm: 0.5rem;
-            --spacing-md: 1rem;
-            --spacing-lg: 1.5rem;
-            --spacing-xl: 2rem;
-            --spacing-2xl: 3rem;
-            
-            --border-radius: 0.5rem;
-            --border-radius-lg: 0.75rem;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            
+            --color-background: #f5faf9;
+            --color-text: var(--en-dark);
+            --color-text-muted: #5a6b7d;
+            --color-border: #d7e2e1;
+
+            --radius: 3px;
+            --radius-lg: 6px;
+
+            --shadow-sm: 0 1px 2px rgba(9, 80, 93, 0.06);
+            --shadow-md: 0 6px 20px rgba(9, 80, 93, 0.08);
+
             --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --color-surface: #1e293b;
-                --color-background: #0f172a;
-                --color-text: #f1f5f9;
-                --color-text-muted: #94a3b8;
-                --color-border: #334155;
+                --color-surface: #102a2e;
+                --color-background: #0b1e21;
+                --color-text: #e8f1f0;
+                --color-text-muted: #9fb3b1;
+                --color-border: #1d3a3e;
             }
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: var(--font-family);
+            font-weight: 400;
             background-color: var(--color-background);
             color: var(--color-text);
             line-height: 1.6;
             font-size: 16px;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 var(--spacing-lg);
+            padding: 0 1.5rem;
         }
 
-        header {
+        .site-header {
             background-color: var(--color-surface);
             border-bottom: 1px solid var(--color-border);
-            padding: var(--spacing-2xl) 0;
-            text-align: center;
+            padding: 1.25rem 0;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: var(--spacing-sm);
-            color: var(--color-text);
+        .site-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
         }
 
-        .subtitle {
-            font-size: 1.25rem;
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .brand-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--en-deep);
+        }
+
+        .hero {
+            padding: 4.5rem 0 3rem;
+            background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-background) 100%);
+            border-bottom: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 420px;
+            height: 420px;
+            background-image:
+                linear-gradient(var(--en-green) 1px, transparent 1px),
+                linear-gradient(90deg, var(--en-green) 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.06;
+            transform: rotate(8deg);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            line-height: 1.15;
+            color: var(--en-deep);
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .hero h1 { color: #e8f1f0; }
+        }
+
+        .hero h1 .accent {
+            color: var(--en-green);
+            font-weight: 500;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
             color: var(--color-text-muted);
-            margin-bottom: var(--spacing-lg);
+            max-width: 60ch;
+            position: relative;
         }
 
-        main {
-            padding: var(--spacing-2xl) 0;
+        main { padding: 3.5rem 0 4rem; }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--en-green);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--en-deep);
+            margin-bottom: 2rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .section-title { color: #c4dcd9; }
         }
 
         .prototypes-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-xl);
-            margin-top: var(--spacing-2xl);
+            gap: 1.5rem;
         }
 
         .prototype-card {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
             background-color: var(--color-surface);
             border: 1px solid var(--color-border);
-            border-radius: var(--border-radius-lg);
-            padding: var(--spacing-xl);
+            border-left: 3px solid var(--en-green);
+            border-radius: var(--radius);
+            padding: 1.75rem;
             box-shadow: var(--shadow-sm);
-            transition: all 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-left-color 0.2s ease;
             text-decoration: none;
             color: inherit;
-            display: block;
         }
 
-        .prototype-card:hover {
-            box-shadow: var(--shadow-md);
+        .prototype-card:hover,
+        .prototype-card:focus-visible {
             transform: translateY(-2px);
-            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+            border-left-color: var(--en-deep);
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .prototype-card:hover {
-                transform: none;
-            }
+        .prototype-card:focus-visible {
+            outline: 2px solid var(--en-green);
+            outline-offset: 3px;
         }
 
         .prototype-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: var(--spacing-sm);
-            color: var(--color-primary);
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--en-deep);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .prototype-title { color: #c4dcd9; }
         }
 
         .prototype-description {
             color: var(--color-text-muted);
-            margin-bottom: var(--spacing-lg);
-            line-height: 1.7;
+            font-size: 0.9375rem;
+            flex-grow: 1;
         }
 
         .prototype-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
             color: var(--color-text-muted);
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .prototype-tag {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.75rem;
         }
 
         .prototype-status {
-            background-color: var(--color-primary);
-            color: white;
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--border-radius);
+            color: var(--en-green);
             font-weight: 500;
-            font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .prototype-status::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--en-green);
         }
 
         footer {
             background-color: var(--color-surface);
             border-top: 1px solid var(--color-border);
-            padding: var(--spacing-xl) 0;
-            margin-top: var(--spacing-2xl);
-            text-align: center;
+            padding: 2rem 0;
             color: var(--color-text-muted);
+            font-size: 0.875rem;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 var(--spacing-md);
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .prototypes-grid {
-                grid-template-columns: 1fr;
-            }
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .prototype-card { transition: none; }
+            .prototype-card:hover,
+            .prototype-card:focus-visible { transform: none; }
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 0 1rem; }
+            .hero { padding: 3rem 0 2rem; }
+            .hero::after { display: none; }
+            .prototypes-grid { grid-template-columns: 1fr; }
+            .site-header .container { gap: 0.75rem; }
+            .brand-label { display: none; }
         }
     </style>
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <div class="container">
-            <h1>Prototyper</h1>
-            <p class="subtitle">Interaktive værktøjer til produktudvikling og analyse</p>
+            <a href="index.html" class="brand" aria-label="Energinet — til forsiden">
+                <img class="brand-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Energinet_logo.svg" alt="Energinet">
+            </a>
+            <span class="brand-label">Prototyper</span>
         </div>
     </header>
 
+    <section class="hero">
+        <div class="container">
+            <h1>Prototyper <span class="accent">for en bedre verden</span></h1>
+            <p>Interaktive værktøjer og eksperimenter. Bygget med fokus på faglighed, tilgængelighed og den grønne omstilling.</p>
+        </div>
+    </section>
+
     <main>
         <div class="container">
+            <p class="section-label">Aktive prototyper</p>
+            <h2 class="section-title">Udforsk</h2>
+
             <div class="prototypes-grid">
                 <a href="vaerdi/index.html" class="prototype-card">
-                    <h2 class="prototype-title">Værdi</h2>
+                    <span class="prototype-title">Værdi</span>
                     <p class="prototype-description">
-                        Product Owner værktøj til værdistrømanalyse og backlog prioritering. 
-                        Dokumenter dine værdistrømme, analyser opgaver efter organisatorisk og 
-                        strategisk værdi, og få automatisk prioriteret backlog baseret på omfang og blockere.
+                        Product Owner-værktøj til værdistrømanalyse og backlog-prioritering.
+                        Dokumentér værdistrømme, analysér opgaver efter organisatorisk og
+                        strategisk værdi, og få automatisk prioriteret backlog baseret på
+                        omfang og blockere.
                     </p>
                     <div class="prototype-meta">
-                        <span>Value Stream Analysis</span>
+                        <span class="prototype-tag">Value stream</span>
                         <span class="prototype-status">Aktiv</span>
                     </div>
                 </a>
-                
+
                 <a href="pokemon/index.html" class="prototype-card">
-                    <h2 class="prototype-title">Pokemon</h2>
+                    <span class="prototype-title">Pokémon</span>
                     <p class="prototype-description">
-                        Simple and loveable Pokemon overview using the PokeAPI. 
-                        Browse all Pokemon with search functionality, view their types, 
-                        and explore the complete Pokedex in a modern, responsive interface.
+                        Responsivt overblik over alle Pokémon, bygget på PokeAPI. Søg,
+                        udforsk typer og bladr gennem det komplette Pokedex i et rent,
+                        minimalistisk interface.
                     </p>
                     <div class="prototype-meta">
-                        <span>Pokemon Database</span>
+                        <span class="prototype-tag">Demo</span>
                         <span class="prototype-status">Aktiv</span>
                     </div>
                 </a>
@@ -210,7 +343,8 @@
 
     <footer>
         <div class="container">
-            <p>Prototyper til produktudvikling og værdistrømanalyse</p>
+            <span>© Energinet — Prototyper</span>
+            <span>Grøn energi for en bedre verden</span>
         </div>
     </footer>
 </body>

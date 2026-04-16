@@ -3,109 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Værdi - Product Owner Værdistrømanalyse</title>
+    <title>Værdi — Energinet Prototyper</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Værdi</h1>
-        <p>Product Owner værktøj til værdistrømanalyse og backlog prioritering</p>
+    <header class="site-header">
+        <div class="container">
+            <a href="../index.html" class="brand" aria-label="Energinet — tilbage til prototyper">
+                <img class="brand-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Energinet_logo.svg" alt="Energinet">
+            </a>
+            <nav class="site-nav">
+                <a href="../index.html" class="site-nav-link">← Alle prototyper</a>
+            </nav>
+        </div>
     </header>
 
-    <main>
+    <section class="page-hero">
+        <div class="container">
+            <p class="section-label">Prototype</p>
+            <h1>Værdi</h1>
+            <p class="page-lead">Product Owner-værktøj til værdistrømanalyse og backlog-prioritering.</p>
+        </div>
+    </section>
+
+    <main class="container">
         <section class="analysis-section">
-            <h2>Værdistrøm Dokumentation</h2>
+            <h2>Værdistrøm-dokumentation</h2>
             <div class="value-stream-form">
                 <div class="form-group">
-                    <label for="value-stream-name">Værdistrøm Navn</label>
-                    <input type="text" id="value-stream-name" placeholder="f.eks. Kundeservice proces">
+                    <label for="value-stream-name">Værdistrøm — navn</label>
+                    <input type="text" id="value-stream-name" placeholder="F.eks. kundeservice-proces">
                 </div>
                 <div class="form-group">
                     <label for="value-stream-description">Beskrivelse</label>
-                    <textarea id="value-stream-description" placeholder="Beskriv værdistrømmen og dens formål..."></textarea>
+                    <textarea id="value-stream-description" placeholder="Beskriv værdistrømmen og dens formål…"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="stakeholders">Interessenter</label>
-                    <input type="text" id="stakeholders" placeholder="Kundeteam, Support, Development">
+                    <input type="text" id="stakeholders" placeholder="Kundeteam, support, udvikling">
                 </div>
-                <button class="btn-primary" id="save-value-stream">Gem Værdistrøm</button>
+                <button class="btn-primary" id="save-value-stream" type="button">Gem værdistrøm</button>
             </div>
         </section>
 
         <section class="task-section">
-            <h2>Opgave Management</h2>
+            <h2>Opgave-management</h2>
             <div class="task-form">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="task-title">Opgave Titel</label>
-                        <input type="text" id="task-title" placeholder="Beskriv opgaven...">
+                        <label for="task-title">Opgave — titel</label>
+                        <input type="text" id="task-title" placeholder="Beskriv opgaven…">
                     </div>
                     <div class="form-group">
-                        <label for="task-effort">Omfang (1-10)</label>
+                        <label for="task-effort">Omfang (1–10)</label>
                         <select id="task-effort">
-                            <option value="1">1 - Meget lille</option>
+                            <option value="1">1 — meget lille</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
-                            <option value="5">5 - Medium</option>
+                            <option value="5">5 — medium</option>
                             <option value="6">6</option>
                             <option value="7">7</option>
                             <option value="8">8</option>
                             <option value="9">9</option>
-                            <option value="10">10 - Meget stort</option>
+                            <option value="10">10 — meget stort</option>
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="org-value">Organisatorisk Værdi (1-10)</label>
+                        <label for="org-value">Organisatorisk værdi (1–10)</label>
                         <select id="org-value">
-                            <option value="1">1 - Meget lav</option>
+                            <option value="1">1 — meget lav</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
-                            <option value="5">5 - Medium</option>
+                            <option value="5">5 — medium</option>
                             <option value="6">6</option>
                             <option value="7">7</option>
                             <option value="8">8</option>
                             <option value="9">9</option>
-                            <option value="10">10 - Meget høj</option>
+                            <option value="10">10 — meget høj</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="strategic-value">Strategisk Værdi (1-10)</label>
+                        <label for="strategic-value">Strategisk værdi (1–10)</label>
                         <select id="strategic-value">
-                            <option value="1">1 - Meget lav</option>
+                            <option value="1">1 — meget lav</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
-                            <option value="5">5 - Medium</option>
+                            <option value="5">5 — medium</option>
                             <option value="6">6</option>
                             <option value="7">7</option>
                             <option value="8">8</option>
                             <option value="9">9</option>
-                            <option value="10">10 - Meget høj</option>
+                            <option value="10">10 — meget høj</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="blockers">Blockere</label>
-                    <textarea id="blockers" placeholder="Liste blockere der kan forhindre succes..."></textarea>
+                    <textarea id="blockers" placeholder="Liste blockere der kan forhindre succes…"></textarea>
                 </div>
 
-                <button class="btn-primary" id="add-task">Tilføj Opgave</button>
+                <button class="btn-primary" id="add-task" type="button">Tilføj opgave</button>
             </div>
         </section>
 
         <section class="backlog-section">
-            <h2>Prioriteret Backlog</h2>
+            <h2>Prioriteret backlog</h2>
             <div class="backlog-controls">
-                <button class="btn-secondary" id="sort-by-priority">Sorter efter Prioritet</button>
-                <button class="btn-secondary" id="sort-by-value">Sorter efter Værdi</button>
-                <button class="btn-secondary" id="export-backlog">Eksporter Backlog</button>
+                <button class="btn-secondary" id="sort-by-priority" type="button">Sortér efter prioritet</button>
+                <button class="btn-secondary" id="sort-by-value" type="button">Sortér efter værdi</button>
+                <button class="btn-secondary" id="export-backlog" type="button">Eksportér backlog</button>
             </div>
             <div class="backlog-list" id="backlog-list">
                 <div class="empty-state">
@@ -115,27 +131,34 @@
         </section>
 
         <section class="analytics-section">
-            <h2>Værdi Analyse</h2>
+            <h2>Værdi-analyse</h2>
             <div class="analytics-grid">
                 <div class="metric-card">
-                    <h3>Total Opgaver</h3>
+                    <h3>Total opgaver</h3>
                     <div class="metric-value" id="total-tasks">0</div>
                 </div>
                 <div class="metric-card">
-                    <h3>Gennemsnitlig Værdi</h3>
+                    <h3>Gennemsnitlig værdi</h3>
                     <div class="metric-value" id="avg-value">0</div>
                 </div>
                 <div class="metric-card">
-                    <h3>Høj Prioritet</h3>
+                    <h3>Høj prioritet</h3>
                     <div class="metric-value" id="high-priority">0</div>
                 </div>
                 <div class="metric-card">
-                    <h3>Opgaver med Blockere</h3>
+                    <h3>Opgaver med blockere</h3>
                     <div class="metric-value" id="blocked-tasks">0</div>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer>
+        <div class="container">
+            <span>© Energinet — Prototyper</span>
+            <span>Grøn energi for en bedre verden</span>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
