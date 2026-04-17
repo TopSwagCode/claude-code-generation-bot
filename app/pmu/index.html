@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMU - PHASOR MEASUREMENT UNIT | Energinet</title>
+    <meta name="description" content="Lær om PMU (Phasor Measurement Unit) - avancerede måleenheder i elnettet som måler elektriske signaler præcist og synkront.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="logo-link" aria-label="Tilbage til forsiden">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Energinet_logo.svg" 
+                     alt="Energinet" 
+                     class="logo">
+            </a>
+            <nav class="nav" aria-label="Hovednavigation">
+                <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#hvad-er-pmu">HVAD ER PMU</a></li>
+                    <li><a href="#hvordan-virker-det">HVORDAN VIRKER DET</a></li>
+                    <li><a href="#anvendelse">ANVENDELSE</a></li>
+                    <li><a href="#fremtiden">FREMTIDEN</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">PMU<br><span class="subtitle">PHASOR MEASUREMENT UNIT</span></h1>
+                    <p class="hero-description">Avancerede måleenheder der overvåger elnettet i realtid med ekstrem præcision</p>
+                    <button class="cta-button" data-scroll-to="hvad-er-pmu">UDFORSK PMU TEKNOLOGI</button>
+                </div>
+                <div class="hero-visual">
+                    <div class="pmu-animation">
+                        <div class="grid-network">
+                            <div class="grid-line horizontal" style="top: 20%"></div>
+                            <div class="grid-line horizontal" style="top: 40%"></div>
+                            <div class="grid-line horizontal" style="top: 60%"></div>
+                            <div class="grid-line horizontal" style="top: 80%"></div>
+                            <div class="grid-line vertical" style="left: 20%"></div>
+                            <div class="grid-line vertical" style="left: 40%"></div>
+                            <div class="grid-line vertical" style="left: 60%"></div>
+                            <div class="grid-line vertical" style="left: 80%"></div>
+                        </div>
+                        <div class="pmu-nodes">
+                            <div class="pmu-node" style="top: 20%; left: 20%"><div class="pulse"></div></div>
+                            <div class="pmu-node" style="top: 40%; left: 60%"><div class="pulse"></div></div>
+                            <div class="pmu-node" style="top: 60%; left: 40%"><div class="pulse"></div></div>
+                            <div class="pmu-node" style="top: 80%; left: 80%"><div class="pulse"></div></div>
+                        </div>
+                        <div class="data-flow">
+                            <div class="data-packet" style="animation-delay: 0s"></div>
+                            <div class="data-packet" style="animation-delay: 0.5s"></div>
+                            <div class="data-packet" style="animation-delay: 1s"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What is PMU Section -->
+        <section class="section" id="hvad-er-pmu">
+            <div class="container">
+                <h2 class="section-title">HVAD ER EN PMU?</h2>
+                <div class="content-grid">
+                    <div class="content-text">
+                        <p class="lead">En Phasor Measurement Unit (PMU) er en avanceret måleenhed, der måler elektriske signaler i elnettet med ekstrem præcision og synkront timing.</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">⚡</div>
+                                <div class="feature-content">
+                                    <h3>PRÆCISE MÅLINGER</h3>
+                                    <p>Måler spænding og strøm med mikrosekunders nøjagtighed</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🕐</div>
+                                <div class="feature-content">
+                                    <h3>SYNKRONT TIMING</h3>
+                                    <p>GPS-synkroniseret tid sikrer sammenlignelige data på tværs af nettet</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">📊</div>
+                                <div class="feature-content">
+                                    <h3>REALTIDSDATA</h3>
+                                    <p>Leverer kontinuerlige målinger op til 50 gange per sekund</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="interactive-demo">
+                        <div class="pmu-diagram">
+                            <div class="measurement-display">
+                                <div class="measurement-value">
+                                    <span class="value" id="voltage-value">230.5</span>
+                                    <span class="unit">kV</span>
+                                    <span class="label">Spænding</span>
+                                </div>
+                                <div class="measurement-value">
+                                    <span class="value" id="current-value">1.23</span>
+                                    <span class="unit">kA</span>
+                                    <span class="label">Strøm</span>
+                                </div>
+                                <div class="measurement-value">
+                                    <span class="value" id="frequency-value">50.01</span>
+                                    <span class="unit">Hz</span>
+                                    <span class="label">Frekvens</span>
+                                </div>
+                            </div>
+                            <div class="timestamp" id="timestamp">2026-04-17 14:32:45.123</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it Works Section -->
+        <section class="section section-alt" id="hvordan-virker-det">
+            <div class="container">
+                <h2 class="section-title">HVORDAN VIRKER PMU TEKNOLOGI?</h2>
+                <div class="process-flow">
+                    <div class="process-step" data-step="1">
+                        <div class="process-icon">📡</div>
+                        <h3>GPS SYNKRONISERING</h3>
+                        <p>PMU'en modtager præcis tidsreference fra GPS-satellitter</p>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div class="process-step" data-step="2">
+                        <div class="process-icon">⚡</div>
+                        <h3>SIGNALMÅLING</h3>
+                        <p>Måler spænding og strøm fra elnettet med høj opløsning</p>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div class="process-step" data-step="3">
+                        <div class="process-icon">💻</div>
+                        <h3>DATABEHANDLING</h3>
+                        <p>Beregner fasorværdier og andre elektriske parametre</p>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div class="process-step" data-step="4">
+                        <div class="process-icon">📊</div>
+                        <h3>DATATRANSMISSION</h3>
+                        <p>Sender synkroniserede data til kontrolcentre</p>
+                    </div>
+                </div>
+                
+                <div class="interactive-phasor">
+                    <h3 class="phasor-title">INTERAKTIV FASOR DEMONSTRATION</h3>
+                    <div class="phasor-display">
+                        <canvas id="phasor-canvas" width="400" height="400"></canvas>
+                        <div class="phasor-controls">
+                            <div class="control-group">
+                                <label for="magnitude-slider">Magnitude:</label>
+                                <input type="range" id="magnitude-slider" min="0.5" max="2" step="0.1" value="1">
+                                <span id="magnitude-display">1.0</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="phase-slider">Fase (°):</label>
+                                <input type="range" id="phase-slider" min="0" max="360" step="5" value="0">
+                                <span id="phase-display">0°</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="frequency-slider">Frekvens (Hz):</label>
+                                <input type="range" id="frequency-slider" min="49.5" max="50.5" step="0.01" value="50">
+                                <span id="frequency-display">50.00 Hz</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Applications Section -->
+        <section class="section" id="anvendelse">
+            <div class="container">
+                <h2 class="section-title">ANVENDELSE I ELNETTET</h2>
+                <div class="applications-grid">
+                    <div class="application-card">
+                        <div class="card-icon">🔍</div>
+                        <h3>SYSTEMOVERVÅGNING</h3>
+                        <p>Real-time overvågning af elnet stabilitet og effektbalance</p>
+                        <div class="card-details">
+                            <ul>
+                                <li>Spændingsovervågning</li>
+                                <li>Frekvensanalyse</li>
+                                <li>Lastfordeling</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="application-card">
+                        <div class="card-icon">⚠️</div>
+                        <h3>FEJLDETEKTION</h3>
+                        <p>Hurtig identifikation og lokalisering af fejl i transmissionsnettet</p>
+                        <div class="card-details">
+                            <ul>
+                                <li>Jordfejldetektion</li>
+                                <li>Kortslutningsanalyse</li>
+                                <li>Impedansmåling</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="application-card">
+                        <div class="card-icon">🎯</div>
+                        <h3>STYRING & KONTROL</h3>
+                        <p>Understøtter avancerede styringssystemer for optimal netdrift</p>
+                        <div class="card-details">
+                            <ul>
+                                <li>Automatisk frekvensregulering</li>
+                                <li>Spændingsregulering</li>
+                                <li>Belastningsfordeling</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="application-card">
+                        <div class="card-icon">📈</div>
+                        <h3>DATAANALYSE</h3>
+                        <p>Historisk analyse for optimering og planlægning af nettet</p>
+                        <div class="card-details">
+                            <ul>
+                                <li>Trendanalyse</li>
+                                <li>Kapacitetsplanlægning</li>
+                                <li>Effektivitetsoptimering</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Section -->
+        <section class="section section-alt" id="fremtiden">
+            <div class="container">
+                <h2 class="section-title">PMU OG DEN GRØNNE OMSTILLING</h2>
+                <div class="future-content">
+                    <div class="future-text">
+                        <p class="lead">PMU teknologi spiller en central rolle i den grønne omstilling ved at muliggøre integration af vedvarende energi i elnettet.</p>
+                        <div class="benefits-grid">
+                            <div class="benefit-item">
+                                <h4>VINDENERGI INTEGRATION</h4>
+                                <p>PMU'er hjælper med at håndtere varierende vindenergiproduktion ved at levere præcise målinger af netforbindelser.</p>
+                            </div>
+                            <div class="benefit-item">
+                                <h4>SOLENERGI OVERVÅGNING</h4>
+                                <p>Realtidsovervågning af solcelleanlæg sikrer optimal integration i elnettet.</p>
+                            </div>
+                            <div class="benefit-item">
+                                <h4>SMART GRID UDVIKLING</h4>
+                                <p>PMU data er fundamentet for fremtidens intelligente elnet.</p>
+                            </div>
+                            <div class="benefit-item">
+                                <h4>NETTSTABILITET</h4>
+                                <p>Sikrer stabil elkvalitet trods øget variation i energiproduktion.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="future-visual">
+                        <div class="renewable-animation">
+                            <div class="wind-turbine">
+                                <div class="turbine-tower"></div>
+                                <div class="turbine-blades"></div>
+                            </div>
+                            <div class="solar-panel"></div>
+                            <div class="pmu-connection"></div>
+                            <div class="data-stream">
+                                <div class="data-point"></div>
+                                <div class="data-point"></div>
+                                <div class="data-point"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Energinet_logo.svg" 
+                         alt="Energinet" 
+                         class="footer-logo-img">
+                </div>
+                <div class="footer-info">
+                    <p>Energinet · Tonne Kjærsvej 65 · DK-7000 Fredericia</p>
+                    <p>+45 70 10 22 44 · info@energinet.dk · CVR-nr. 28 98 06 71</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
